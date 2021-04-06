@@ -1,3 +1,4 @@
+/* Zephyr added */
 #pragma once
 
 #include <stdint.h>
@@ -24,3 +25,8 @@ uint32_t sysview_get_interrupt(void);
 // Unlock SystemView (nestable)
 #define SEGGER_SYSVIEW_UNLOCK()		irq_unlock(__sysview_irq_key);         \
 				}
+
+#ifndef   SEGGER_SYSVIEW_ON_EVENT_RECORDED
+  #define SEGGER_SYSVIEW_ON_EVENT_RECORDED(NumBytes)                            // Needed for SystemView via non-J-Link Recorder. Macro to enable the UART or notify IP task.
+#endif
+
